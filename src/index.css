@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 10%;
+
+    --radius: 0.5rem;
+
+    /* CV-specific tokens */
+    --cv-sidebar: 0 0% 12%;
+    --cv-dark: 0 0% 17%;
+    --cv-accent: 45 93% 58%;
+    --cv-teal: 174 72% 56%;
+    --cv-purple: 270 60% 65%;
+    --cv-pink: 340 82% 70%;
+  }
+
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 45 93% 58%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 0 0% 80%;
+    
+    --cv-sidebar: 0 0% 12%;
+    --cv-dark: 0 0% 8%;
+    --cv-accent: 45 93% 58%;
+    --cv-teal: 174 72% 56%;
+    --cv-purple: 270 60% 65%;
+    --cv-pink: 340 82% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-purple {
+    background: linear-gradient(135deg, hsl(270, 60%, 65%) 0%, hsl(217, 91%, 60%) 100%);
+  }
+  
+  .gradient-pink {
+    background: linear-gradient(135deg, hsl(340, 82%, 70%) 0%, hsl(350, 75%, 65%) 100%);
+  }
+  
+  .text-gradient-purple {
+    background: linear-gradient(135deg, hsl(270, 60%, 65%) 0%, hsl(217, 91%, 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
+  }
+  
+  .text-gradient-pink {
+    background: linear-gradient(135deg, hsl(340, 82%, 70%) 0%, hsl(350, 75%, 65%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
+  }
+
+  /* Rounded line caps for separators */
+  hr, .separator-line {
+    border-radius: 9999px;
+  }
+}
