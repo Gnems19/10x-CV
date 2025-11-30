@@ -99,8 +99,8 @@ const Index = () => {
   const projects = [
     { title: "Multithreading library in C (pthreads, futures, promises, channeling)", link: "https://github.com/Gnems19/multi-threading_library_in_C" },
     { title: "Online casino using Java WebSocket and Tomcat", link: "https://github.com/Gnems19/final-project-nargizbet" },
-    { title: "Crypto wallet built with Python and FastAPI", link: "https://github.com/Gnems19/Strapped" },
-    { title: "Unity platformer game", link: "https://github.com/Gnems19/Design_Patterns_Final_Project" },
+    { title: "Crypto wallet built with Python and FastAPI", link: "https://github.com/Gnems19/Design_Patterns_Final_Project" },
+    { title: "Unity platformer game", link:  "https://github.com/Gnems19/Strapped"},
     { title: "iOS weather app developed with Swift and CocoaPods", link: "" },
     { title: "Mini games: Tetris, Sudoku, Breakout, Yahtzee, and Boggle", link: "" },
   ];
