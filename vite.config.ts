@@ -4,11 +4,13 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // Base path for GitHub Pages. Adjust if you host under a different repo name.
+  base: "/10x-CV/",
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development"].filter(Boolean),
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
