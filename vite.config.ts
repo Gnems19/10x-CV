@@ -4,8 +4,9 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Base path for GitHub Pages. Adjust if you host under a different repo name.
-  base: "/10x-CV/",
+  // Use '/' during development so local dev server routes work as expected.
+  // Use '/10x-CV/' for production builds (GitHub Pages deployment).
+  base: mode === "development" ? "/" : "/10x-CV/",
   server: {
     host: "::",
     port: 8080,
