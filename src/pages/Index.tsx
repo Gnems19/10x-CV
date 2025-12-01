@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Moon, Sun, Mail, MapPin, Globe, ExternalLink, Phone } from "lucide-react";
 import { LinkedinLogo } from "phosphor-react";
-
 import { Button } from "@/components/ui/button";
 import profilePhoto from "@/assets/profile-photo.png";
 
@@ -14,7 +13,7 @@ const Index = () => {
     // Check system preference on mount
     const isDarkMode = document.documentElement.classList.contains("dark");
     setIsDark(isDarkMode);
-        
+    
     // Trigger progress bar animations after a brief delay
     const timer = setTimeout(() => {
       setAnimateProgress(true);
@@ -113,35 +112,94 @@ const Index = () => {
           <div className="flex gap-3">
             <Button
               onClick={() => setShowPI(false)}
-              className={`font-bold shadow-sm hover:opacity-90 transition-opacity border-0 ${
+              className={`w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
                 !showPI 
                   ? 'bg-cv-purple text-white' 
                   : 'bg-muted/20 text-muted-foreground'
               }`}
-              size="sm"
             >
               CV
             </Button>
             <Button
               onClick={() => setShowPI(true)}
-              className={`font-bold shadow-sm hover:opacity-90 transition-opacity border-0 ${
+              className={`w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
                 showPI 
                   ? 'bg-cv-teal text-cv-dark' 
                   : 'bg-muted/20 text-muted-foreground'
               }`}
-              size="sm"
             >
               PI
             </Button>
           </div>
-          <Button
+          <button
             onClick={toggleTheme}
-            className="bg-cv-accent text-cv-dark font-bold shadow-sm hover:opacity-90 transition-opacity border-0"
-            size="sm"
+            className="relative w-9 h-9 rounded-md overflow-hidden bg-gradient-to-b from-blue-400 via-orange-300 to-amber-200 dark:from-indigo-900 dark:via-purple-900 dark:to-slate-900 transition-all duration-700 border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1"
+            aria-label="Toggle theme"
           >
-            {isDark ? <Sun className="w-4 h-4 mr-2" /> : <Moon className="w-4 h-4 mr-2" />}
-            {isDark ? "Light" : "Dark"}
-          </Button>
+            {/* Sky background that changes */}
+            <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-orange-300 dark:from-slate-900 dark:to-indigo-950 transition-all duration-700" />
+            
+            {/* Sun */}
+            <div 
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                isDark ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+              }`}
+            >
+              <div className="relative w-5 h-5">
+                {/* Sun rays */}
+                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute top-1/2 left-1/2 w-0.5 h-1.5 bg-red-400 rounded-full"
+                      style={{
+                        transform: `rotate(${i * 45}deg) translateY(-9px)`,
+                        transformOrigin: '0 0',
+                      }}
+                    />
+                  ))}
+                </div>
+                {/* Sun circle */}
+                <div className="absolute inset-0.5 rounded-full bg-gradient-to-br from-red-400 via-orange-500 to-red-500 shadow-md shadow-red-400/50" />
+              </div>
+            </div>
+
+            {/* Moon */}
+            <div 
+              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+              }`}
+            >
+              <div className="relative w-4 h-4">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-slate-200 to-slate-400 shadow-md shadow-slate-400/30" />
+                {/* Moon craters */}
+                <div className="absolute top-1 left-1 w-1 h-1 rounded-full bg-slate-300/40" />
+                <div className="absolute top-2 left-2 w-0.5 h-0.5 rounded-full bg-slate-300/30" />
+                <div className="absolute top-0.5 right-0.5 w-0.5 h-0.5 rounded-full bg-slate-300/50" />
+              </div>
+            </div>
+
+            {/* Stars (only visible in dark mode) */}
+            {
+            // isDark && (
+            //   <div className="absolute inset-0 transition-opacity duration-700">
+            //     <div
+            //         key={1}
+            //         className="absolute w-0.5 h-0.5 bg-white rounded-full animate-pulse"
+            //         style={{
+            //           /**random distribution  around the center*/
+
+            //           top: `${10 + (1 * 10)}%`,
+            //           right: `${20 + (1 * 50)}%`,
+            //           animationDelay: `${1 * 0.3}s`,
+            //           animationDuration: '2s',
+            //         }}
+            //       />
+                
+            //   </div>
+            // )
+            }
+          </button>
         </div>
       </nav>
 
@@ -353,7 +411,7 @@ const Index = () => {
             {/* Core Areas */}
             <section className="mb-12">
               <div className="flex flex-wrap gap-6 justify-center mb-8">
-                 {coreAreas.map((area, index) => {
+                {coreAreas.map((area, index) => {
                   const radius = 44;
                   const circumference = 2 * Math.PI * radius;
                   const strokeDashoffset = animateProgress 
@@ -403,7 +461,7 @@ const Index = () => {
                         </span>
                       </div>
                     </div>
-                   );
+                  );
                 })}
               </div>
             </section>
@@ -426,7 +484,7 @@ const Index = () => {
                     <div className="relative w-[50px] h-[20px] flex-shrink-0 mt-1">
                       <svg width="50" height="20" viewBox="0 0 50 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0">
                         <path d="M3.33987 0.750002L41.4631 0.75C42.2532 0.75 43.2409 1.22 43.6592 1.8L48.5161 8.48C48.9809 9.13 48.9344 10.15 48.3999 10.76L42.3811 17.66C41.9512 18.15 41.0216 18.55 40.3128 18.55H3.33987C1.30647 18.55 0.0748724 16.63 1.14386 15.14L4.36238 10.71C4.7923 10.12 4.7923 9.16 4.36238 8.57L1.14386 4.14C0.0748724 2.67 1.31809 0.750002 3.33987 0.750002Z" 
-                          className="fill-foreground stroke-foreground dark:fill-white dark:stroke-white group-hover:fill-cv-purple group-hover:stroke-cv-purple transition-colors"
+                          className="fill-foreground stroke-foreground dark:fill-white dark:stroke-white group-hover:fill-cv-purple group-hover:stroke-cv-purple transition-colors" 
                           strokeWidth="1.5" 
                           strokeMiterlimit="10" 
                           strokeLinecap="round" 
