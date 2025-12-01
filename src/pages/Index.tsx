@@ -20,9 +20,16 @@ const Index = () => {
   const [language, setLanguage] = useState<'en' | 'ka' | 'ja'>('en');
 
   useEffect(() => {
-    // Check system preference on mount
-    const isDarkMode = document.documentElement.classList.contains("dark");
+    // Check time of day on mount (dark mode from 6 PM to 6 AM)
+    const currentHour = new Date().getHours();
+    const isDarkMode = currentHour >= 18 || currentHour < 6;
     setIsDark(isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
     
     // Trigger progress bar animations after a brief delay
     const timer = setTimeout(() => {
@@ -105,7 +112,7 @@ const Index = () => {
       place: { en: "Free University of Tbilisi", ka: "თბილისის თავისუფალი უნივერსიტეტი", ja: "トビリシ自由大学" },
       description: { 
         en: "2019 – Present | Coursework includes C++, Java OOP, Databases, Applied Statistics, Design Patterns, Probability & Statistics, Artificial Intelligence, Distributed Systems, Swift/iOS, Oracle SQL and more.",
-        ka: "2019 – დღემდე | კურსები მოიცავს C++, Java OOP, მონაცემთა ბაზები, გამოყენებითი სტატისტიკა, დიზაინ პატერნები, ალბათობა და სტატისტიკა, AI, დისტრიბუციული სისტემები, Swift/iOS, Oracle SQL და სხვა.",
+        ka: "2019 – დღემდე | კურსები მოიცავს C++, Java OOP, მონაცემთა ბაზები, ალბათობა და გამოყენებითი სტატისტიკა, დიზაინ პატერნები, AI, დისტრიბუციული სისტემები, Swift/iOS, Oracle SQL და სხვა.",
         ja: "2019年 - 現在 | コースワークにはC++、Java OOP、データベース、応用統計学、デザインパターン、確率・統計、人工知能、分散システム、Swift/iOS、Oracle SQLなどが含まれます。"
       },
     },
@@ -116,7 +123,7 @@ const Index = () => {
       description: { 
         en: "2018 – 2019 | Focused on algorithmic problem-solving, data structures, and competitive programming techniques.",
         ka: "2018 – 2019 | ფოკუსი ალგორითმული პრობლემების გადაჭრაზე, მონაცემთა სტრუქტურებზე და კონკურენტული პროგრამირების ტექნიკებზე.",
-        ja: "2018年 - 2019年 | アルゴリズムによる問題解決、データ構造、競技プログラミング技術に焦点を当てる。"
+        ja: "2018年〜2019年 | アルゴリズムを用いた問題解決力の強化、データ構造の理解、そして競技プログラミングにおける高度なテクニックの習得に重点を置いて活動していました。"
       },
     },
   ];
@@ -751,11 +758,8 @@ const Index = () => {
                     : circumference;
                   
                   return (
-                    <div
-                      key={area.label.en}
-                      className="relative w-32 h-32 group cursor-pointer"
-                    >
-                      <svg width="128" height="128" viewBox="0 0 96 96" className="absolute inset-0 -rotate-90">
+                    <div key={area.label.en} className="relative w-36 h-36 group cursor-pointer">
+                              <svg width="144" height="144" viewBox="0 0 96 96" className="absolute inset-0 -rotate-90">
                         <defs>
                           <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="0%">
                             <stop offset="0%" stopColor="#7250FC" />
