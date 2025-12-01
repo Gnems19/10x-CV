@@ -6,6 +6,15 @@
 All colors MUST be HSL.
 */
 
+@font-face {
+  font-family: 'BPG Extrasquare Mtavruli';
+  src: url('/fonts/bpg_extrasquare_mtavruli_2009.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -93,10 +102,21 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
+    overflow: hidden;
   }
   
+  .cv-shell {
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-gutter: stable both-edges;
+  }
+
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
+  }
+  .font-georgian {
+    font-family: "BPG Extrasquare Mtavruli", "Inter", sans-serif;
   }
 }
 

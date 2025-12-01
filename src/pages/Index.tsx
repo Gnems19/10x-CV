@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
-import { Moon, Sun, Mail, MapPin, Globe, ExternalLink, Phone } from "lucide-react";
+import { Moon, Sun, Mail, MapPin, Globe, ExternalLink, Phone, ChevronDown } from "lucide-react";
 import { LinkedinLogo } from "phosphor-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import profilePhoto from "@/assets/profile-photo.png";
+import flagUK from "@/assets/flag-uk.svg";
+import flagGE from "@/assets/flag-ge.svg";
+import flagJP from "@/assets/flag-jp.svg";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(false);
   const [showPI, setShowPI] = useState(false);
   const [animateProgress, setAnimateProgress] = useState(false);
+  const [language, setLanguage] = useState<'en' | 'ka' | 'ja'>('en');
 
   useEffect(() => {
     // Check system preference on mount
@@ -45,10 +55,10 @@ const Index = () => {
   ];
 
   const coreAreas = [
-    { label: "Debug", level: 95 },
-    { label: "OOP", level: 85 },
-    { label: "Comm", level: 90 },
-    { label: "Research", level: 99 },
+    { label: { en: "Debug", ka: "დებაგი", ja: "デバッグ" }, level: 95 },
+    { label: { en: "OOP", ka: "ოოპ", ja: "OOP" }, level: 85 },
+    { label: { en: "Comm", ka: "კომუნიკაცია", ja: "伝達力" }, level: 90 },
+    { label: { en: "Research", ka: "კვლევა", ja: "研究" }, level: 99 },
   ];
 
   const getCirclePath = (percentage: number) => {
@@ -68,48 +78,325 @@ const Index = () => {
   const experience = [
     {
       year: "2023",
-      role: ".NET Developer",
-      place: "Altasoft — Tbilisi, Georgia",
-      description: "Oct 2023 – Present | Redesigning Lien & Collection Management for the Ministry of Finance using event sourcing and CQRS; developing microservices and refactoring legacy systems into modern C# codebases; building SOAP/XML interfaces and compliance services.",
+      role: { en: ".NET Developer", ka: ".NET დეველოპერი", ja: ".NET開発者" },
+      place: { en: "Altasoft — Tbilisi, Georgia", ka: "Altasoft — თბილისი, საქართველო", ja: "Altasoft — トビリシ、ジョージア" },
+      description: { 
+        en: "Oct 2023 – Present | Redesigning Lien & Collection Management for the Ministry of Finance using event sourcing and CQRS; developing microservices and refactoring legacy systems into modern C# codebases; building SOAP/XML interfaces and compliance services.",
+        ka: "ოქტ 2023 – დღემდე | ფინანსთა მენეჯმენტის სისტემის რედიზაინი event sourcing-ისა და CQRS-ის გამოყენებით; მიკროსერვისების დეველოპმენტი და ლეგასი სისტემების რეფაქტორინგი თანამედროვე C# ში; SOAP/XML ინტერფეისებისა და კომპლაენსის სერვისების აგება.",
+        ja: "2023年10月 - 現在 | イベントソーシングとCQRSを使用した財務省のリエン＆コレクション管理の再設計; マイクロサービスの開発とレガシーシステムのモダンなC#コードベースへのリファクタリング; SOAP/XMLインターフェースとコンプライアンスサービスの構築。"
+      },
     },
     {
       year: "2021",
-      role: "Java Software Engineer",
-      place: "Quantori — Remote",
-      description: "Dec 2021 – Sep 2022 | Backend development for pharmaceutical industry systems; building REST APIs with Vert.x, MySQL and Docker; writing unit tests with Mockito and collaborating in Agile teams.",
+      role: { en: "Java Software Engineer", ka: "Java სოფთვეარ ინჟინერი", ja: "Javaソフトウェアエンジニア" },
+      place: { en: "Quantori — Remote", ka: "Quantori — დისტანციურად", ja: "Quantori — リモート" },
+      description: { 
+        en: "Dec 2021 – Sep 2022 | Backend development for pharmaceutical industry systems; building REST APIs with Vert.x, MySQL and Docker; writing unit tests with Mockito and collaborating in Agile teams.",
+        ka: "დეკ 2021 – სექტ 2022 | ფარმაცევტული ინდუსტრიის სისტემების backend დეველოპმენტი; REST API-ების აგება Vert.x, MySQL და Docker-ით; unit ტესტების წერა Mockito-თი და Agile მეთოდოლოგია.",
+        ja: "2021年12月 - 2022年9月 | 製薬業界システムのバックエンド開発; Vert.x、MySQL、Dockerを使用したREST APIの構築; Mockitoでのユニットテストの作成とアジャイルチームでのコラボレーション。"
+      },
     },
   ];
 
   const education = [
     {
       year: "2019",
-      title: "BSc in Math & Computer Science",
-      place: "Free University of Tbilisi",
-      description: "2019 – Present | Coursework includes C++, Java OOP, Databases, Applied Statistics, Design Patterns, Probability & Statistics, Artificial Intelligence, Distributed Systems, Swift/iOS, Oracle SQL and more.",
+      title: { en: "BSc in Math & Computer Science", ka: "ბაკალავრი მათემატიკა და კომპიუტერულ მეცნიერებაში", ja: "数学・コンピュータサイエンス学士" },
+      place: { en: "Free University of Tbilisi", ka: "თბილისის თავისუფალი უნივერსიტეტი", ja: "トビリシ自由大学" },
+      description: { 
+        en: "2019 – Present | Coursework includes C++, Java OOP, Databases, Applied Statistics, Design Patterns, Probability & Statistics, Artificial Intelligence, Distributed Systems, Swift/iOS, Oracle SQL and more.",
+        ka: "2019 – დღემდე | კურსები მოიცავს C++, Java OOP, მონაცემთა ბაზები, გამოყენებითი სტატისტიკა, დიზაინ პატერნები, ალბათობა და სტატისტიკა, AI, დისტრიბუციული სისტემები, Swift/iOS, Oracle SQL და სხვა.",
+        ja: "2019年 - 現在 | コースワークにはC++、Java OOP、データベース、応用統計学、デザインパターン、確率・統計、人工知能、分散システム、Swift/iOS、Oracle SQLなどが含まれます。"
+      },
     },
     {
       year: "2018",
-      title: "Competitive Programming Club in C++",
-      place: "Akaki Tsereteli State University",
-      description: "2018 – 2019 | Focused on algorithmic problem-solving, data structures, and competitive programming techniques.",
+      title: { en: "Competitive Programming Club in C++", ka: "კონკურენტული პროგრამირების კლუბი C++-ში", ja: "C++競技プログラミングクラブ" },
+      place: { en: "Akaki Tsereteli State University", ka: "აკაკი წერეთლის სახელმწიფო უნივერსიტეტი", ja: "アカキ・ツェレテリ州立大学" },
+      description: { 
+        en: "2018 – 2019 | Focused on algorithmic problem-solving, data structures, and competitive programming techniques.",
+        ka: "2018 – 2019 | ფოკუსი ალგორითმული პრობლემების გადაჭრაზე, მონაცემთა სტრუქტურებზე და კონკურენტული პროგრამირების ტექნიკებზე.",
+        ja: "2018年 - 2019年 | アルゴリズムによる問題解決、データ構造、競技プログラミング技術に焦点を当てる。"
+      },
     },
   ];
 
   const projects = [
-    { title: "Multithreading library in C (pthreads, futures, promises, channeling)", link: "https://github.com/Gnems19/multi-threading_library_in_C" },
-    { title: "Online casino using Java WebSocket and Tomcat", link: "https://github.com/Gnems19/final-project-nargizbet" },
-    { title: "Crypto wallet built with Python and FastAPI", link: "https://github.com/Gnems19/Design_Patterns_Final_Project" },
-    { title: "Unity platformer game", link:  "https://github.com/Gnems19/Strapped"},
-    { title: "iOS weather app developed with Swift and CocoaPods", link: "" },
-    { title: "Mini games: Tetris, Sudoku, Breakout, Yahtzee, and Boggle", link: "" },
+    { 
+      title: { 
+        en: "Multithreading library in C (pthreads, futures, promises, channeling)", 
+        ka: "მულტითრედინგის ბიბლიოთეკა C-ში (pthreads, futures, promises, channeling)",
+        ja: "Cのマルチスレッドライブラリ（pthreads、futures、promises、channeling）"
+      }, 
+      link: "https://github.com/Gnems19/multi-threading_library_in_C" 
+    },
+    { 
+      title: { 
+        en: "Online casino using Java WebSocket and Tomcat", 
+        ka: "ონლაინ კაზინო Java WebSocket-ისა და Tomcat-ის გამოყენებით",
+        ja: "Java WebSocketとTomcatを使用したオンラインカジノ"
+      }, 
+      link: "https://github.com/Gnems19/final-project-nargizbet" 
+    },
+    { 
+      title: { 
+        en: "Crypto wallet built with Python and FastAPI", 
+        ka: "კრიპტო საფულე აგებული Python-ისა და FastAPI-ით",
+        ja: "PythonとFastAPIで構築された暗号ウォレット"
+      }, 
+      link: "https://github.com/Gnems19/Design_Patterns_Final_Project"
+    },
+    { 
+      title: { 
+        en: "Unity platformer game", 
+        ka: "Unity პლატფორმერ თამაში",
+        ja: "Unityプラットフォーマーゲーム"
+      }, 
+      link: "https://github.com/Gnems19/Strapped" 
+    },
+    { 
+      title: { 
+        en: "iOS weather app developed with Swift and CocoaPods", 
+        ka: "iOS ამინდის აპლიკაცია შექმნილი Swift-ისა და CocoaPods-ით",
+        ja: "SwiftとCocoaPodsで開発されたiOS天気アプリ"
+      }, 
+      link: "" 
+    },
+    { 
+      title: { 
+        en: "Mini games: Tetris, Sudoku, Breakout, Yahtzee, and Boggle", 
+        ka: "მინი თამაშები: Tetris, Sudoku, Breakout, Yahtzee და Boggle",
+        ja: "ミニゲーム：テトリス、数独、ブレイクアウト、ヤッツィー、ボグル"
+      }, 
+      link: "" 
+    },
   ];
+
+  const translations = {
+    en: {
+      nameValue: "Gigi Nemsadze",
+      jobTitle: "Software\nEngineer",
+      personal: "Personal",
+      name: "Name",
+      birthday: "Birthday",
+      birthdayValue: "January 17, 2002",
+      nationality: "Nationality",
+      nationalityValue: "Georgian",
+      languages: "Languages",
+      languagesValue: "Georgian, English, Japanese",
+      contact: "Contact",
+      email: "Email",
+      website: "Website",
+      programmingLanguages: "Programming Languages",
+      software: "Software",
+      profile: "Profile",
+      profileText: "I am a .NET Developer and Software Engineer with a passion for problem-solving and continuous learning. I specialize in building scalable backend systems, refactoring legacy code, and implementing modern architectural patterns like CQRS and event sourcing.",
+      work: "Work",
+      education: "Education",
+      projects: "Projects",
+      achievements: "Achievements",
+      achievementsList: [
+        "Honorable Mention — ACM ICPC Northern Eurasia Finals (2022)",
+        "National Math Olympiad finalist (2019)"
+      ],
+      personalInterests: "Personal Interests",
+      hobbiesActivities: "Hobbies & Activities",
+      hobbies: [
+        "Swimming",
+        "Skiing",
+        "Learning Japanese",
+        "Singing in Japanese choir",
+        "Japanese culture enthusiast",
+        "Board games (Code Names, Mafia)",
+        "Playing guitar",
+        "Drawing",
+        "Clay crafting",
+        "Cooking"
+      ],
+      personalRecords: "Personal Records",
+      swimming: "Swimming",
+      swimmingRecord: "100m in 1:36",
+      skiing: "Skiing",
+      skiingRecord: "Max speed: 79 km/h (accidentally)",
+      rubiksCube: "Rubik's Cube",
+      rubiksCubeRecord: "Solved in 55 seconds",
+      strength: "Strength",
+      strengthRecords: [
+        "Bench press: 100kg",
+        "Push-ups: 60 in one go",
+        "Pull-ups: 20 in one go",
+        "Plank: 5 minutes straight"
+      ],
+      sportsGames: "Sports & Games",
+      favorites: "Favorites",
+      favoritesList: [
+        "Pool",
+        "Ping-pong",
+        "Water polo (former pro)"
+      ],
+      downToPlay: "Down to Play",
+      downToPlayList: [
+        "Football (still learning)",
+        "Basketball (still learning)",
+        "Monkey in the Middle",
+        "Capture the Flag"
+      ],
+      chess: "Chess",
+      chessRating: "Rating: 800"
+    },
+    ka: {
+      nameValue: "გიგი ნემსაძე",
+      jobTitle: "სოფთვეარ\nინჟინერი",
+      personal: "პირადი",
+      name: "სახელი",
+      birthday: "დაბადების თარიღი",
+      birthdayValue: "17 იანვარი, 2002",
+      nationality: "მოქალაქეობა",
+      nationalityValue: "ქართველი",
+      languages: "ენები",
+      languagesValue: "ქართული, ინგლისური, იაპონური",
+      contact: "კონტაქტი",
+      email: "ელ. ფოსტა",
+      website: "ვებსაიტი",
+      programmingLanguages: "პროგრამირების ენები",
+      software: "პროგრამები",
+      profile: "პროფილი",
+      profileText: "მე ვარ .NET დეველოპერი და სოფთვეარ ინჟინერი, გატაცებული ვარ პრობლემების გადაჭრითა და სწავლით. გამოცდილება მაქ მასშტაბურ ბექენდ სისტემების აგებაში, ლეგასი კოდის რეფაქტორინგში და თანამედროვე არქიტექტურული პატერნების (როგორიცაა CQRS და event sourcing) დანერგვაში.",
+      work: "სამუშაო გამოცდილება",
+      education: "განათლება",
+      projects: "პროექტები",
+      achievements: "მიღწევები",
+      achievementsList: [
+        "საპატიო სიგელი — ACM ICPC ჩრდილოეთ ევრაზიის ფინალი (2022)",
+        "მათემატიკის ეროვნული ოლიმპიადის ფინალისტი (2019)"
+      ],
+      personalInterests: "პირადი ინტერესები",
+      hobbiesActivities: "ჰობი და აქტივობები",
+      hobbies: [
+        "ცურვა",
+        "თხილამურებით სრიალი",
+        "იაპონურის სწავლა",
+        "იაპონურ გუნდში სიმღერა",
+        "იაპონური კულტურის მოყვარული",
+        "სამაგიდო თამაშები (Code Names, Avalon)",
+        "გიტარაზე დაკვრა",
+        "ხატვა",
+        "თიხით ძერწვა",
+        "კულინარია"
+      ],
+      personalRecords: "პირადი რეკორდები",
+      swimming: "ცურვა",
+      swimmingRecord: "100მ 1:36-ში",
+      skiing: "თხილამურებით სრიალი",
+      skiingRecord: "მაქს. სიჩქარე: 79 კმ/სთ (შემთხვევით)",
+      rubiksCube: "რუბიკის კუბიკი",
+      rubiksCubeRecord: "ავაწყვე 55 წამში",
+      strength: "ძალა",
+      strengthRecords: [
+        "ბენჩ პრესი: 100კგ",
+        "აზიდვები: 60 ერთი მისვლით",
+        "ბარზე აწევა: 20 ერთ მისვლით",
+        "პლანკი: 5 წუთი უწყვეტად"
+      ],
+      sportsGames: "სპორტი და თამაშები",
+      favorites: "ფავორიტები",
+      favoritesList: [
+        "ბილიარდი",
+        "პინგ-პონგი",
+        "წყალბურთი (ყოფილი ქუთაისის ნაკრების წევრი)"
+      ],
+      downToPlay: "მზად ვარ ვითამაშო",
+      downToPlayList: [
+        "ფეხბურთი (ჯერ ვსწავლობ)",
+        "კალათბურთი (ჯერ ვსწავლობ)",
+        "წრეში ბურთი",
+        "დროშობანა"
+      ],
+      chess: "ჭადრაკი",
+      chessRating: "რეიტინგი: 800"
+    },
+    ja: {
+      nameValue: "ギギネムサゼ",
+      jobTitle: "ソフトウェア\nエンジニア",
+      personal: "個人情報",
+      name: "名前",
+      birthday: "生年月日",
+      birthdayValue: "2002年1月17日",
+      nationality: "国籍",
+      nationalityValue: "ジョージア",
+      languages: "言語",
+      languagesValue: "ジョージア語、英語、日本語",
+      contact: "連絡先",
+      email: "メール",
+      website: "ウェブサイト",
+      programmingLanguages: "プログラミング言語",
+      software: "ソフトウェア",
+      profile: "プロフィール",
+      profileText: "私は.NET開発者兼ソフトウェアエンジニアとして、問題解決と継続的な学習に情熱を持っています。スケーラブルなバックエンドシステムの構築、レガシーコードのリファクタリング、CQRSやイベントソーシングなどのモダンなアーキテクチャパターンの実装を専門としています。",
+      work: "職務経歴",
+      education: "学歴",
+      projects: "プロジェクト",
+      achievements: "実績",
+      achievementsList: [
+        "優秀賞 — ACM ICPC北ユーラシア決勝 (2022)",
+        "全国数学オリンピックファイナリスト (2019)"
+      ],
+      personalInterests: "個人的な興味",
+      hobbiesActivities: "趣味とアクティビティ",
+      hobbies: [
+        "水泳",
+        "スキー",
+        "日本語学習",
+        "日本語合唱団への参加",
+        "日本文化への関心",
+        "ボードゲーム（コードネーム、マフィア）",
+        "ギター演奏",
+        "絵を描く",
+        "粘土工芸",
+        "料理"
+      ],
+      personalRecords: "個人記録",
+      swimming: "水泳",
+      swimmingRecord: "100m 1分36秒",
+      skiing: "スキー",
+      skiingRecord: "最高速度：79 km/h（偶然）",
+      rubiksCube: "ルービックキューブ",
+      rubiksCubeRecord: "55秒で解決",
+      strength: "筋力",
+      strengthRecords: [
+        "ベンチプレス：100kg",
+        "腕立て伏せ：60回連続",
+        "懸垂：20回連続",
+        "プランク：5分間連続"
+      ],
+      sportsGames: "スポーツとゲーム",
+      favorites: "お気に入り",
+      favoritesList: [
+        "ビリヤード",
+        "卓球",
+        "水球（元選手）"
+      ],
+      downToPlay: "一緒にプレイできます",
+      downToPlayList: [
+        "サッカー（学習中）",
+        "バスケットボール（学習中）",
+        "モンキーゲーム",
+        "キャプチャー・ザ・フラッグ"
+      ],
+      chess: "チェス",
+      chessRating: "レーティング：800"
+    }
+  };
+
+  const t = translations[language];
 
   return (
     <div className="min-h-screen bg-white dark:bg-cv-dark">
+      <div className="cv-shell bg-white dark:bg-cv-dark">
       {/* Top Menu Bar */}
       <nav className="sticky top-0 z-50 bg-white dark:bg-cv-sidebar border-b-2 border-foreground/10">
-        <div className="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="flex gap-3">
+        <div className="max-w-6xl mx-auto px-6 py-3 grid grid-cols-3 items-center">
+          <div className="flex justify-start gap-3">
             <Button
               onClick={() => setShowPI(false)}
               className={`w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
@@ -131,55 +418,106 @@ const Index = () => {
               PI
             </Button>
           </div>
-          <button
-            onClick={toggleTheme}
-            className="relative w-9 h-9 rounded-md overflow-hidden bg-gradient-to-b from-blue-400 via-orange-300 to-amber-200 dark:from-indigo-900 dark:via-purple-900 dark:to-slate-900 transition-all duration-700 border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1"
-            aria-label="Toggle theme"
-          >
-            {/* Sky background that changes */}
-            <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-orange-300 dark:from-slate-900 dark:to-indigo-950 transition-all duration-700" />
-            
-            {/* Sun */}
-            <div 
-              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
-                isDark ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-              }`}
+          <div className="flex justify-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="w-9 h-9 cursor-pointer hover:scale-110 transition-transform duration-150 focus:outline-none flex items-center justify-center">
+                  <img
+                    src={language === 'en' ? flagUK : language === 'ka' ? flagGE : flagJP}
+                    alt={language === 'en' ? 'English flag' : language === 'ka' ? 'Georgian flag' : 'Japanese flag'}
+                    className="w-6 h-6 object-contain"
+                    loading="lazy"
+                  />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                align="end"
+                sideOffset={8}
+                className="bg-white dark:bg-[hsl(30_20%_15%)] border border-border shadow-lg z-[100] text-foreground"
+              >
+                <DropdownMenuItem
+                  onClick={() => setLanguage('en')}
+                  className="cursor-pointer flex items-center gap-2 hover:bg-accent focus:bg-accent"
+                >
+                  <img src={flagUK} alt="English flag" className="w-5 h-5 object-contain" loading="lazy" />
+                  <span>English</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setLanguage('ka')}
+                  className="cursor-pointer flex items-center gap-2 hover:bg-accent focus:bg-accent"
+                >
+                  <img src={flagGE} alt="Georgian flag" className="w-5 h-5 object-contain" loading="lazy" />
+                  <span>ქართული</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => setLanguage('ja')}
+                  className="cursor-pointer flex items-center gap-2 hover:bg-accent focus:bg-accent"
+                >
+                  <img src={flagJP} alt="Japanese flag" className="w-5 h-5 object-contain" loading="lazy" />
+                  <span>日本語</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          <div className="flex justify-end">
+            <button
+              onClick={toggleTheme}
+              className="relative w-9 h-9 rounded-md overflow-hidden
+  transition-all duration-700
+  border border-foreground/20
+  shadow-[0_4px_0_0_rgba(0,0,0,0.15)]
+  hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)]
+  hover:translate-y-[2px]
+  active:shadow-none
+  active:translate-y-1
+  before:absolute before:inset-0 before:-z-10
+  before:bg-gradient-to-b
+  before:from-blue-400 before:via-orange-300 before:to-amber-200
+  dark:before:from-indigo-900 dark:before:via-purple-900 dark:before:to-slate-900"
+              aria-label="Toggle theme"
             >
-              <div className="relative w-5 h-5">
-                {/* Sun rays */}
-                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-                  {[...Array(8)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute top-1/2 left-1/2 w-0.5 h-1.5 bg-red-400 rounded-full"
-                      style={{
-                        transform: `rotate(${i * 45}deg) translateY(-9px)`,
-                        transformOrigin: '0 0',
-                      }}
-                    />
-                  ))}
+              {/* Sky background that changes */}
+              <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-orange-300 dark:from-slate-900 dark:to-indigo-950 transition-all duration-700" />
+              {/* Sun */}
+              <div 
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                  isDark ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                }`}
+              >
+                <div className="relative w-5 h-5">
+                  <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
+                    {[...Array(8)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute top-1/2 left-1/2 w-0.5 h-1.5 bg-red-400 rounded-full"
+                        style={{
+                          transform: `rotate(${i * 45}deg) translateY(-9px)`,
+                          transformOrigin: '0 0',
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="absolute inset-0.5 rounded-full bg-gradient-to-br from-red-400 via-orange-500 to-red-500 shadow-md shadow-red-400/50" />
                 </div>
-                {/* Sun circle */}
-                <div className="absolute inset-0.5 rounded-full bg-gradient-to-br from-red-400 via-orange-500 to-red-500 shadow-md shadow-red-400/50" />
               </div>
-            </div>
-
-            {/* Moon */}
-            <div 
-              className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
-                isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
-              }`}
-            >
-              <div className="relative w-4 h-4">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-slate-200 to-slate-400 shadow-md shadow-slate-400/30" />
-                {/* Moon craters */}
-                <div className="absolute top-1 left-1 w-1 h-1 rounded-full bg-slate-300/40" />
-                <div className="absolute top-2 left-2 w-0.5 h-0.5 rounded-full bg-slate-300/30" />
-                <div className="absolute top-0.5 right-0.5 w-0.5 h-0.5 rounded-full bg-slate-300/50" />
+              {/* Moon */}
+              <div 
+                className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-in-out ${
+                  isDark ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                }`}
+              >
+                <div className="relative w-4 h-4">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-slate-200 to-slate-400 shadow-md shadow-slate-400/30" />
+                  <div className="absolute top-1 left-1 w-1 h-1 rounded-full bg-slate-300/40" />
+                  <div className="absolute top-2 left-2 w-0.5 h-0.5 rounded-full bg-slate-300/30" />
+                  <div className="absolute top-0.5 right-0.5 w-0.5 h-0.5 rounded-full bg-slate-300/50" />
+                </div>
               </div>
-            </div>
-
-            {/* Stars (only visible in dark mode) */}
+            </button>
+          </div>
+        </div>
+      </nav>
+{/* Stars (only visible in dark mode) */}
             {
             // isDark && (
             //   <div className="absolute inset-0 transition-opacity duration-700">
@@ -199,10 +537,6 @@ const Index = () => {
             //   </div>
             // )
             }
-          </button>
-        </div>
-      </nav>
-
       {/* Centered container for large screens */}
       <div className="min-h-[calc(100vh-60px)] flex items-center justify-center py-8">
         <div className="max-w-6xl w-full mx-auto bg-white dark:bg-cv-dark shadow-2xl">
@@ -221,12 +555,12 @@ const Index = () => {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <h1 className="font-outfit text-5xl lg:text-6xl font-black uppercase text-gradient-purple leading-tight">
-              Gigi Nemsadze
+            <h1 className={`${language === 'ka' ? 'font-georgian' : 'font-outfit'} text-5xl lg:text-6xl font-black uppercase text-gradient-purple leading-tight`}>
+              {t.nameValue}
             </h1>
-            <div className="w-1 h-16 bg-foreground/20 dark:bg-white/20 rounded-full" />
-            <h2 className="font-outfit text-4xl lg:text-5xl font-black uppercase text-gradient-pink leading-tight">
-              Software<br/>Engineer
+            <div className="w-1 h-16 bg-foreground/20 dark:bg-foreground/20 rounded-full" />
+            <h2 className={`${language === 'ka' ? 'font-georgian' : 'font-outfit'} text-4xl lg:text-5xl font-black uppercase text-gradient-pink leading-tight whitespace-pre-line`}>
+              {t.jobTitle}
             </h2>
           </div>
         </header>
@@ -239,46 +573,46 @@ const Index = () => {
           <aside className="lg:w-1/3 bg-white dark:bg-cv-sidebar border-b lg:border-b-0 lg:border-r-2 border-muted-foreground/20 p-8 lg:p-12 relative">
             {/* Personal */}
             <section className="mb-10">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20">
-                Personal
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20`}>
+                {t.personal}
               </h3>
               <div className="space-y-4">
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide mb-1">Name</div>
-                  <div className="text-xs text-muted-foreground">Gigi Nemsadze</div>
+                  <div className="text-xs font-bold uppercase tracking-wide mb-1">{t.name}</div>
+                  <div className="text-xs text-muted-foreground">{t.nameValue}</div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide mb-1">Birthday</div>
-                  <div className="text-xs text-muted-foreground">January 17, 2002</div>
+                  <div className="text-xs font-bold uppercase tracking-wide mb-1">{t.birthday}</div>
+                  <div className="text-xs text-muted-foreground">{t.birthdayValue}</div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide mb-1">Nationality</div>
-                  <div className="text-xs text-muted-foreground">Georgian</div>
+                  <div className="text-xs font-bold uppercase tracking-wide mb-1">{t.nationality}</div>
+                  <div className="text-xs text-muted-foreground">{t.nationalityValue}</div>
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-wide mb-1">Languages</div>
-                  <div className="text-xs text-muted-foreground">Georgian, English, Japanese</div>
+                  <div className="text-xs font-bold uppercase tracking-wide mb-1">{t.languages}</div>
+                  <div className="text-xs text-muted-foreground">{t.languagesValue}</div>
                 </div>
               </div>
             </section>
 
             {/* Contact */}
             <section className="mb-10">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20">
-                Contact
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20`}>
+                {t.contact}
               </h3>
               <div className="space-y-4">
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wide mb-1 flex items-center gap-1">
                     <Mail className="w-3 h-3" />
-                    Email
+                    {t.email}
                   </div>
                   <a href="mailto:giginemsadze33@gmail.com" className="text-xs text-muted-foreground break-all hover:text-cv-purple transition-colors">giginemsadze33@gmail.com</a>
                 </div>
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wide mb-1 flex items-center gap-1">
                     <Globe className="w-3 h-3" />
-                    Website
+                    {t.website}
                   </div>
                   <a href="https://chocola.ge" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-cv-purple transition-colors">chocola.ge</a>
                 </div>
@@ -294,8 +628,8 @@ const Index = () => {
 
             {/* Skills */}
             <section>
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20">
-                Programming Languages
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20`}>
+                {t.programmingLanguages}
               </h3>
               {skills.map((skill, index) => (
                 <div key={skill.name} className="mb-5 group">
@@ -320,8 +654,8 @@ const Index = () => {
 
             {/* Software */}
             <section className="mt-10">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20">
-                Software
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase pb-3 mb-5 border-b-2 border-foreground/20`}>
+                {t.software}
               </h3>
               <div className="mb-5 group">
                 <div className="flex justify-between items-center mb-2">
@@ -398,13 +732,11 @@ const Index = () => {
           <main className="lg:w-2/3 p-8 lg:p-12 bg-white dark:bg-cv-dark">
             {/* Profile */}
             <section className="mb-12">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4">
-                Profile
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4`}>
+                {t.profile}
               </h3>
               <p className="text-sm leading-relaxed text-foreground">
-                I am a .NET Developer and Software Engineer with a passion for problem-solving and continuous learning.
-                I specialize in building scalable backend systems, refactoring legacy code, and implementing modern
-                architectural patterns like CQRS and event sourcing.
+                {t.profileText}
               </p>
             </section>
 
@@ -420,7 +752,7 @@ const Index = () => {
                   
                   return (
                     <div
-                      key={area.label}
+                      key={area.label.en}
                       className="relative w-32 h-32 group cursor-pointer"
                     >
                       <svg width="128" height="128" viewBox="0 0 96 96" className="absolute inset-0 -rotate-90">
@@ -456,8 +788,8 @@ const Index = () => {
                         />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-base font-black uppercase tracking-wide text-foreground">
-                          {area.label}
+                        <span className={`text-base font-black uppercase tracking-wide text-foreground ${language === 'ka' ? 'font-georgian' : ''}`}>
+                          {area.label[language]}
                         </span>
                       </div>
                     </div>
@@ -468,8 +800,8 @@ const Index = () => {
 
             {/* Experience */}
             <section className="mb-12">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-8">
-                Work
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-8`}>
+                {t.work}
               </h3>
               <div className="relative">
                 {/* Continuous vertical line */}
@@ -503,10 +835,10 @@ const Index = () => {
                     {/* Content */}
                     <div className="flex-1">
                       <h4 className="text-sm font-black uppercase tracking-wide text-foreground mb-1 group-hover:text-cv-purple transition-colors">
-                        {exp.role}
+                        {exp.role[language]}
                       </h4>
-                      <p className="text-xs uppercase text-muted-foreground mb-2 font-bold group-hover:text-cv-purple transition-colors">{exp.place}</p>
-                      <p className="text-xs text-foreground/80 leading-relaxed">{exp.description}</p>
+                      <p className="text-xs uppercase text-muted-foreground mb-2 font-bold group-hover:text-cv-purple transition-colors">{exp.place[language]}</p>
+                      <p className="text-xs text-foreground/80 leading-relaxed">{exp.description[language]}</p>
                     </div>
                   </div>
                 ))}
@@ -515,8 +847,8 @@ const Index = () => {
 
             {/* Education */}
             <section className="mb-12">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-8">
-                Education
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-8`}>
+                {t.education}
               </h3>
               <div className="relative">
                 {/* Continuous vertical line */}
@@ -550,11 +882,11 @@ const Index = () => {
                     {/* Content */}
                     <div className="flex-1">
                       <h4 className="text-sm font-black uppercase tracking-wide text-foreground mb-1 group-hover:text-cv-purple transition-colors">
-                        {edu.title}
+                        {edu.title[language]}
                       </h4>
-                      <p className="text-xs uppercase text-muted-foreground mb-2 font-bold group-hover:text-cv-purple transition-colors">{edu.place}</p>
+                      <p className="text-xs uppercase text-muted-foreground mb-2 font-bold group-hover:text-cv-purple transition-colors">{edu.place[language]}</p>
                       <p className="text-xs text-foreground/80 leading-relaxed">
-                        {edu.description}
+                        {edu.description[language]}
                       </p>
                     </div>
                   </div>
@@ -564,8 +896,8 @@ const Index = () => {
 
             {/* Projects */}
             <section className="mb-12">
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4">
-                Projects
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4`}>
+                {t.projects}
               </h3>
               <ul className="space-y-2 text-xs leading-relaxed text-foreground">
                 {projects.map((project, index) => (
@@ -578,11 +910,11 @@ const Index = () => {
                         rel="noopener noreferrer"
                         className="hover:text-cv-teal transition-colors inline-flex items-center gap-1 group"
                       >
-                        {project.title}
+                        {project.title[language]}
                         <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                     ) : (
-                      <span>{project.title}</span>
+                      <span>{project.title[language]}</span>
                     )}
                   </li>
                 ))}
@@ -591,12 +923,13 @@ const Index = () => {
 
             {/* Achievements */}
             <section>
-              <h3 className="font-anton text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4">
-                Achievements
+              <h3 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] leading-[100%] uppercase border-b-2 border-foreground/20 pb-3 mb-4`}>
+                {t.achievements}
               </h3>
               <ul className="space-y-2 text-xs leading-relaxed text-foreground list-disc list-inside marker:text-cv-teal">
-                <li>Honorable Mention — ACM ICPC Northern Eurasia Finals (2022)</li>
-                <li>National Math Olympiad finalist (2019)</li>
+                {t.achievementsList.map((achievement, index) => (
+                  <li key={index}>{achievement}</li>
+                ))}
               </ul>
             </section>
           </main>
@@ -605,85 +938,50 @@ const Index = () => {
         ) : (
           /* Personal Interests Page */
           <div className="p-8 lg:p-12">
-            <h1 className="text-5xl font-black uppercase text-gradient-purple text-center mb-12">
-              Personal Interests
+            <h1 className={`${language === 'ka' ? 'font-georgian' : FontFace} text-5xl font-black uppercase text-gradient-purple text-center mb-12`}>
+              {t.personalInterests}
             </h1>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {/* Hobbies & Activities */}
               <div className="bg-white dark:bg-cv-sidebar rounded-lg p-8 border-2 border-foreground/10">
-                <h2 className="font-anton text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3">
-                  Hobbies & Activities
+                <h2 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3`}>
+                  {t.hobbiesActivities}
                 </h2>
                 <ul className="space-y-3 text-sm text-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Swimming</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Skiing</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Learning Japanese</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Singing in Japanese choir</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Japanese culture enthusiast</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Board games (Code Names, Mafia)</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Playing guitar</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Drawing</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Clay crafting</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-cv-teal text-lg">•</span>
-                    <span>Cooking</span>
-                  </li>
+                  {t.hobbies.map((hobby, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="text-cv-teal text-lg">•</span>
+                      <span>{hobby}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               {/* Personal Records */}
               <div className="bg-white dark:bg-cv-sidebar rounded-lg p-8 border-2 border-foreground/10">
-                <h2 className="font-anton text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3">
-                  Personal Records
+                <h2 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3`}>
+                  {t.personalRecords}
                 </h2>
                 <div className="space-y-5">
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-1">Swimming</h3>
-                    <p className="text-sm text-muted-foreground">100m in 1:36</p>
+                    <h3 className="text-cv-purple font-bold text-sm mb-1">{t.swimming}</h3>
+                    <p className="text-sm text-muted-foreground">{t.swimmingRecord}</p>
                   </div>
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-1">Skiing</h3>
-                    <p className="text-sm text-muted-foreground">Max speed: 79 km/h (accidentally)</p>
+                    <h3 className="text-cv-purple font-bold text-sm mb-1">{t.skiing}</h3>
+                    <p className="text-sm text-muted-foreground">{t.skiingRecord}</p>
                   </div>
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-1">Rubik's Cube</h3>
-                    <p className="text-sm text-muted-foreground">Solved in 55 seconds</p>
+                    <h3 className="text-cv-purple font-bold text-sm mb-1">{t.rubiksCube}</h3>
+                    <p className="text-sm text-muted-foreground">{t.rubiksCubeRecord}</p>
                   </div>
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-1">Strength</h3>
+                    <h3 className="text-cv-purple font-bold text-sm mb-1">{t.strength}</h3>
                     <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Bench press: 100kg</li>
-                      <li>• Push-ups: 50 in one go</li>
-                      <li>• Pull-ups: 20 in one go</li>
-                      <li>• Plank pose: 5 minutes straight</li>
+                      {t.strengthRecords.map((record, index) => (
+                        <li key={index}>• {record}</li>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -691,30 +989,29 @@ const Index = () => {
 
               {/* Sports & Games */}
               <div className="bg-white dark:bg-cv-sidebar rounded-lg p-8 border-2 border-foreground/10 md:col-span-2">
-                <h2 className="font-anton text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3">
-                  Sports & Games
+                <h2 className={`${language === 'ka' ? 'font-georgian' : 'font-anton'} text-[20.5px] uppercase mb-6 border-b-2 border-foreground/20 pb-3`}>
+                  {t.sportsGames}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-2">Favorites</h3>
+                    <h3 className="text-cv-purple font-bold text-sm mb-2">{t.favorites}</h3>
                     <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Pool</li>
-                      <li>• Ping-pong</li>
-                      <li>• Water polo (former pro)</li>
+                      {t.favoritesList.map((favorite, index) => (
+                        <li key={index}>• {favorite}</li>
+                      ))}
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-2">Down to Play</h3>
+                    <h3 className="text-cv-purple font-bold text-sm mb-2">{t.downToPlay}</h3>
                     <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Football (still learning)</li>
-                      <li>• Basketball (still learning)</li>
-                      <li>• Monkey in the Middle</li>
-                      <li>• Capture the Flag</li>
+                      {t.downToPlayList.map((item, index) => (
+                        <li key={index}>• {item}</li>
+                      ))}
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-cv-purple font-bold text-sm mb-2">Chess</h3>
-                    <p className="text-sm text-muted-foreground">Rating: 800</p>
+                    <h3 className="text-cv-purple font-bold text-sm mb-2">{t.chess}</h3>
+                    <p className="text-sm text-muted-foreground">{t.chessRating}</p>
                   </div>
                 </div>
               </div>
@@ -722,6 +1019,7 @@ const Index = () => {
           </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
