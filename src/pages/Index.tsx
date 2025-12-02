@@ -550,24 +550,23 @@ const Index = () => {
           {!showPI ? (
             <div>
             {/* Header */}
-            <header className="flex items-center gap-8 p-8 lg:p-12 bg-white dark:bg-cv-sidebar">
-          <div className="relative w-32 h-32 flex-shrink-0">
-            <div className="absolute inset-0 rounded-full border-4 border-cv-purple dark:border-cv-purple"></div>
-            <div className="absolute inset-2 rounded-full border-4 border-white dark:border-cv-sidebar overflow-hidden">
-              <img 
-                src={profilePhoto} 
-                alt="Gigi Nemsadze" 
-                className="w-full h-full object-cover"
-              />
+            <header className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 p-6 sm:p-8 lg:p-12 bg-white dark:bg-cv-sidebar">
+            <div className="relative w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0">
+              <div className="absolute inset-0 rounded-full border-4 border-cv-purple dark:border-cv-purple"></div>
+              <div className="absolute inset-2 rounded-full border-4 border-white dark:border-cv-sidebar overflow-hidden">
+                <img src={profilePhoto} alt="Gigi Nemsadze" className="w-full h-full object-cover" />
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-6">
-            <h1 className={`${language === 'ka' ? 'font-georgian' : 'font-outfit'} text-5xl lg:text-6xl font-black uppercase text-gradient-purple leading-tight`}>
-              {t.nameValue}
-            </h1>
-            <div className="w-1 h-16 bg-foreground/20 dark:bg-foreground/20 rounded-full" />
-            <h2 className={`${language === 'ka' ? 'font-georgian' : 'font-outfit'} text-4xl lg:text-5xl font-black uppercase text-gradient-pink leading-tight whitespace-pre-line`}>
-              {t.jobTitle}
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+              <h1
+                className={`${language === "ka" ? "font-georgian" : "font-outfit"} text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-gradient-purple leading-tight`}
+              >
+                {t.nameValue}
+              </h1>
+              <div className="hidden sm:block w-1 h-16 bg-foreground/20 dark:bg-foreground/20 rounded-full" />
+              <h2
+                className={`${language === "ka" ? "font-georgian" : "font-outfit"} text-2xl sm:text-4xl lg:text-5xl font-black uppercase text-gradient-pink leading-tight whitespace-pre-line`}
+              >{t.jobTitle}
             </h2>
           </div>
         </header>
