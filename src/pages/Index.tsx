@@ -181,6 +181,8 @@ const Index = () => {
 
   const translations = {
     en: {
+      cvButton: "CV",
+      piButton: "PI",
       nameValue: "Gigi Nemsadze",
       jobTitle: "Software\nEngineer",
       personal: "Personal",
@@ -252,6 +254,8 @@ const Index = () => {
       chessRating: "Rating: 800"
     },
     ka: {
+      cvButton: "სივი",
+      piButton: "მე",
       nameValue: "გიგი ნემსაძე",
       jobTitle: "სოფთვეარ\nინჟინერი",
       personal: "პირადი",
@@ -323,6 +327,8 @@ const Index = () => {
       chessRating: "რეიტინგი: 800"
     },
     ja: {
+      cvButton: "経歴",
+      piButton: "個人",
       nameValue: "ギギネムサゼ",
       jobTitle: "ソフトウェア\nエンジニア",
       personal: "個人情報",
@@ -406,23 +412,21 @@ const Index = () => {
           <div className="flex justify-start gap-3">
             <Button
               onClick={() => setShowPI(false)}
-              className={`w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
+                className={`${language === "ka" ? "font-georgian" : ""} w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
                 !showPI 
                   ? 'bg-cv-purple text-white' 
                   : 'bg-muted/20 text-muted-foreground'
               }`}
             >
-              CV
+              {t.cvButton}
             </Button>
             <Button
               onClick={() => setShowPI(true)}
-              className={`w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
-                showPI 
-                  ? 'bg-cv-teal text-cv-dark' 
-                  : 'bg-muted/20 text-muted-foreground'
-              }`}
-            >
-              PI
+              className={`${language === "ka" ? "font-georgian" : ""} w-12 h-9 p-0 text-xs font-bold transition-all border border-foreground/20 shadow-[0_4px_0_0_rgba(0,0,0,0.15)] hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)] hover:translate-y-[2px] active:shadow-none active:translate-y-1 ${
+                  showPI ? "bg-cv-teal text-cv-dark" : "bg-muted/20 text-muted-foreground"
+                }`}
+              >
+                {t.piButton}
             </Button>
           </div>
           <div className="flex justify-center">
@@ -546,7 +550,7 @@ const Index = () => {
             }
       {/* Centered container for large screens */}
       <div className="min-h-[calc(100vh-60px)] flex items-center justify-center py-8">
-        <div className="max-w-6xl w-full mx-auto bg-white dark:bg-cv-dark shadow-2xl">
+        <div className="max-w-6xl w-full mx-auto bg-white dark:bg-cv-dark shadow-2xl overflow-hidden">
           {!showPI ? (
             <div>
             {/* Header */}
