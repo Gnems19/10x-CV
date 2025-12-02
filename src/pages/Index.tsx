@@ -471,22 +471,21 @@ const Index = () => {
             </DropdownMenu>
           </div>
           <div className="flex justify-end">
-            <button
-              onClick={toggleTheme}
-              className="relative w-9 h-9 rounded-md overflow-hidden
-  transition-all duration-700
-  border border-foreground/20
-  shadow-[0_4px_0_0_rgba(0,0,0,0.15)]
-  hover:shadow-[0_2px_0_0_rgba(0,0,0,0.15)]
-  hover:translate-y-[2px]
-  active:shadow-none
-  active:translate-y-1
-  before:absolute before:inset-0 before:-z-10
-  before:bg-gradient-to-b
-  before:from-blue-400 before:via-orange-300 before:to-amber-200
-  dark:before:from-indigo-900 dark:before:via-purple-900 dark:before:to-slate-900"
-              aria-label="Toggle theme"
-            >
+<button
+  onClick={toggleTheme}
+  aria-label="Toggle theme"
+  className="
+    relative w-9 h-9 
+    rounded-xl overflow-hidden
+    border border-white/20
+    bg-gradient-to-b from-white/10 to-white/5
+    backdrop-blur-md
+    shadow-[0_1px_3px_rgba(0,0,0,0.2),0_0_10px_rgba(255,255,255,0.3)]
+    transition-colors duration-700
+  "
+>
+
+
               {/* Sky background that changes */}
               <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-orange-300 dark:from-slate-900 dark:to-indigo-950 transition-all duration-700" />
               {/* Sun */}
@@ -497,7 +496,7 @@ const Index = () => {
               >
                 <div className="relative w-5 h-5">
                   <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-                    {[...Array(8)].map((_, i) => (
+                    {/* {[...Array(8)].map((_, i) => (
                       <div
                         key={i}
                         className="absolute top-1/2 left-1/2 w-0.5 h-1.5 bg-red-400 rounded-full"
@@ -506,7 +505,7 @@ const Index = () => {
                           transformOrigin: '0 0',
                         }}
                       />
-                    ))}
+                    ))} */}
                   </div>
                   <div className="absolute inset-0.5 rounded-full bg-gradient-to-br from-red-400 via-orange-500 to-red-500 shadow-md shadow-red-400/50" />
                 </div>
@@ -525,6 +524,7 @@ const Index = () => {
                 </div>
               </div>
             </button>
+            
           </div>
         </div>
       </nav>
