@@ -215,8 +215,7 @@ const Index = () => {
         "Skiing",
         "Learning Japanese",
         "Singing in Japanese choir",
-        "Japanese culture enthusiast",
-        "Board games (Code Names, Mafia)",
+        "Board games",
         "Playing guitar",
         "Drawing",
         "Clay crafting",
@@ -288,8 +287,7 @@ const Index = () => {
         "თხილამურებით სრიალი",
         "იაპონურის სწავლა",
         "იაპონურ გუნდში სიმღერა",
-        "იაპონური კულტურის მოყვარული",
-        "სამაგიდო თამაშები (Code Names, Avalon)",
+        "სამაგიდო თამაშები",
         "გიტარაზე დაკვრა",
         "ხატვა",
         "თიხით ძერწვა",
@@ -361,8 +359,7 @@ const Index = () => {
         "スキー",
         "日本語学習",
         "日本語合唱団への参加",
-        "日本文化への関心",
-        "ボードゲーム（コードネーム、マフィア）",
+        "ボードゲーム",
         "ギター演奏",
         "絵を描く",
         "粘土工芸",
@@ -957,7 +954,7 @@ const Index = () => {
                     </h2>
                     <ul className="space-y-3 text-sm text-foreground">
                       {t.hobbies.map((hobby, index) => (
-                        <li key={index} className="flex items-start gap-3">
+                        <li key={index} className="flex items-center gap-3">
                           <span className="text-cv-teal text-lg">•</span>
                           <span>{hobby}</span>
                         </li>
