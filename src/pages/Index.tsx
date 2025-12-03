@@ -483,7 +483,6 @@ const Index = () => {
                         "
               >
 
-
                 {/* Sky background that changes */}
                 <div className="absolute inset-0 bg-gradient-to-b from-sky-400 to-orange-300 dark:from-slate-900 dark:to-indigo-950 transition-all duration-700" />
                 {/* Sun */}
