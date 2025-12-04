@@ -90,7 +90,7 @@ const Index = () => {
       description: {
         en: "Oct 2023 – Present | Redesigning Lien & Collection Management for the Ministry of Finance using event sourcing and CQRS; developing microservices and refactoring legacy systems into modern C# codebases; building SOAP/XML interfaces and compliance services.",
         ka: "ოქტ 2023 – დღემდე | ფინანსთა მენეჯმენტის სისტემის რედიზაინი event sourcing-ისა და CQRS-ის გამოყენებით; მიკროსერვისების დეველოპმენტი და ლეგასი სისტემების რეფაქტორინგი თანამედროვე C# ში; SOAP/XML ინტერფეისებისა და კომპლაენსის სერვისების აგება.",
-        ja: "2023年10月 - 現在 | イベントソーシングとCQRSを使用した財務省のリエン＆コレクション管理の再設計; マイクロサービスの開発とレガシーシステムのモダンなC#コードベースへのリファクタリング; SOAP/XMLインターフェースとコンプライアンスサービスの構築。"
+        ja: "2023年10月〜現在 | イベントソーシングとCQRSを使用した財務省のリエン＆コレクション管理の再設計; マイクロサービスの開発とレガシーシステムのモダンなC#コードベースへのリファクタリング; SOAP/XMLインターフェースとコンプライアンスサービスの構築。"
       },
     },
     {
@@ -100,7 +100,7 @@ const Index = () => {
       description: {
         en: "Dec 2021 – Sep 2022 | Backend development for pharmaceutical industry systems; building REST APIs with Vert.x, MySQL and Docker; writing unit tests with Mockito and collaborating in Agile teams.",
         ka: "დეკ 2021 – სექტ 2022 | ფარმაცევტული ინდუსტრიის სისტემების backend დეველოპმენტი; REST API-ების აგება Vert.x, MySQL და Docker-ით; unit ტესტების წერა Mockito-თი და Agile მეთოდოლოგია.",
-        ja: "2021年12月 - 2022年9月 | 製薬業界システムのバックエンド開発; Vert.x、MySQL、Dockerを使用したREST APIの構築; Mockitoでのユニットテストの作成とアジャイルチームでのコラボレーション。"
+        ja: "2021年12月〜2022年9月 | 製薬業界システムのバックエンド開発; Vert.x、MySQL、Dockerを使用したREST APIの構築; Mockitoでのユニットテストの作成とアジャイルチームでのコラボレーション。"
       },
     },
   ];
@@ -111,9 +111,9 @@ const Index = () => {
       title: { en: "BSc in Math & Computer Science", ka: "ბაკალავრი მათემატიკა და კომპიუტერულ მეცნიერებაში", ja: "数学・コンピュータサイエンス学士" },
       place: { en: "Free University of Tbilisi", ka: "თბილისის თავისუფალი უნივერსიტეტი", ja: "トビリシ自由大学" },
       description: {
-        en: "2019 – Present | Coursework includes C++, Java OOP, Databases, Applied Statistics, Design Patterns, Probability & Statistics, Artificial Intelligence, Distributed Systems, Swift/iOS, Oracle SQL and more.",
-        ka: "2019 – დღემდე | კურსები მოიცავს C++, Java OOP, მონაცემთა ბაზები, ალბათობა და გამოყენებითი სტატისტიკა, დიზაინ პატერნები, AI, დისტრიბუციული სისტემები, Swift/iOS, Oracle SQL და სხვა.",
-        ja: "2019年 - 現在 | コースワークにはC++、Java OOP、データベース、応用統計学、デザインパターン、確率・統計、人工知能、分散システム、Swift/iOS、Oracle SQLなどが含まれます。"
+        en: "2019 – Present | Coursework includes Cryptography, Databases, Applied Statistics, Design Patterns, Probability & Statistics, Artificial Intelligence, Distributed Systems, Swift/iOS, Oracle SQL and more.",
+        ka: "2019 – დღემდე | გავლილი კურსები: კრიპტოგრაფია, მონაცემთა ბაზები, ალბათობა და გამოყენებითი სტატისტიკა, დიზაინ პატერნები, AI, დისტრიბუციული სისტემები, Swift/iOS, Oracle SQL და სხვა.",
+        ja: "2019年〜現在 | コースワークには暗号理論、データベース、応用統計学、デザインパターン、確率・統計、人工知能、分散システム、Swift/iOS、Oracle SQLなどが含まれます。"
       },
     },
     {
