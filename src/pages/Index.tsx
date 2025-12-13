@@ -176,7 +176,7 @@ const Index = () => {
         ka: "iOS ამინდის აპლიკაცია შექმნილი Swift-ისა და CocoaPods-ით",
         ja: "SwiftとCocoaPodsで開発されたiOS天気アプリ"
       },
-      link: ""
+      link: "https://github.com/Gnems19/weather-app"
     },
     {
       title: {
@@ -835,9 +835,9 @@ const Index = () => {
 
                             <div className="relative flex flex-col items-center flex-shrink-0 w-3">
                               {/* Continuous vertical line, behind the dot */}
-                              {index !== education.length - 1
-                                ? <div className="absolute top-0 bottom-[-45%] left-1/2 -translate-x-1/2 w-[2px] bg-foreground/20 dark:bg-white/20 mt-1 rounded-full pointer-events-none" />
-                                : <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-foreground/20 dark:bg-white/20 mt-1 rounded-full pointer-events-none" />
+                              {index !== experience.length - 1
+                                ? <div className="absolute top-0 bottom-[-45%] left-1/2 -translate-x-1/2 w-[2px] bg-neutral-300 dark:bg-neutral-700 mt-1 rounded-full pointer-events-none" />
+                                : <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-neutral-300 dark:bg-neutral-700 mt-1 rounded-full pointer-events-none" />
                               }
                               {/* Dot on the line */}
                               <div className="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 rounded-full bg-foreground dark:bg-white z-10 mt-1 group-hover:bg-cv-purple group-hover:scale-125 transition-all" />
@@ -885,8 +885,8 @@ const Index = () => {
                             <div className="relative flex flex-col items-center flex-shrink-0 w-3">
                               {/* Continuous vertical line, behind the dot */}
                               {index !== education.length - 1
-                                ? <div className="absolute top-0 bottom-[-45%] left-1/2 -translate-x-1/2 w-[2px] bg-foreground/20 dark:bg-white/20 mt-1 rounded-full pointer-events-none" />
-                                : <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-foreground/20 dark:bg-white/20 mt-1 rounded-full pointer-events-none" />
+                                ? <div className="absolute top-0 bottom-[-45%] left-1/2 -translate-x-1/2 w-[2px] bg-neutral-300 dark:bg-neutral-700 mt-1 rounded-full pointer-events-none" />
+                                : <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-neutral-300 dark:bg-neutral-700 mt-1 rounded-full pointer-events-none" />
                               }
                               {/* Dot on the line */}
                               <div className="absolute left-1/2 -translate-x-1/2 top-0 w-3 h-3 rounded-full bg-foreground dark:bg-white z-10 mt-1 group-hover:bg-cv-purple group-hover:scale-125 transition-all" />
