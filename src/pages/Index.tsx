@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import profilePhoto from "@/assets/profile-photo.png";
+import profilePhoto from "@/assets/profile-photo.webp";
 import flagUK from "@/assets/flag-uk.svg";
 import flagGE from "@/assets/flag-ge.svg";
 import flagJP from "@/assets/flag-jp.svg";
