@@ -411,8 +411,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-cv-dark">
-      <div className="cv-shell bg-white dark:bg-cv-dark">
-        {/* Top Menu Bar */}
+       {/* Top Menu Bar */}
         <nav className="sticky top-0 z-50 bg-white dark:bg-cv-sidebar border-b-2 border-foreground/10">
           <div className="max-w-6xl mx-auto px-6 py-3 grid grid-cols-3 items-center">
             <div className="flex justify-start gap-3">
@@ -549,6 +548,8 @@ const Index = () => {
           //   </div>
           // )
         }
+      <div className="cv-shell bg-white dark:bg-cv-dark">
+       
         {/* Centered container for large screens */}
         <div className="min-h-[calc(100vh-60px)] flex items-center justify-center py-8">
           <div className="max-w-6xl w-full mx-auto bg-white dark:bg-cv-dark shadow-2xl overflow-hidden">
